@@ -492,4 +492,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Static Files
+static/css/ioflix.css
+
 # End of https://www.toptal.com/developers/gitignore/api/python,django,windows,linux,macos,visualstudiocode,node
