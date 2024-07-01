@@ -1,0 +1,105 @@
+<aside class="io-h-screen">
+  <nav class="io-h-full io-flex io-flex-col io-bg-white io-shadow" x-data="{
+      expanded: true, darkMode: true,
+    }">
+    <div class="io-p-3 io-pb-2.5 io-flex io-justify-between io-items-center">
+      <template x-if="expanded">
+        <img class="io-overflow-hidden io-transition-all io-w-30 io-h-8" src="https://img.logoipsum.com/243.svg"
+          alt="ioflix logo" />
+      </template>
+      <div class="io-ml-1.5">
+        <button class="io-p-1.5 io-rounded-lg io-bg-gray-50 hover:io-bg-gray-100" @click="expanded = !expanded">
+          <template x-if="expanded">
+            <svg class="io-w-6 io-h-6 io-text-indigo-800 dark:text-white" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m15 19-7-7 7-7" />
+            </svg>
+          </template>
+          <template x-if="!expanded">
+            <svg class="io-w-6 io-h-6 io-text-indigo-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m9 5 7 7-7 7" />
+            </svg>
+          </template>
+        </button>
+      </div>
+    </div>
+    <ul class="io-relative io-flex-1 io-px-3 [&_li]:io-mb-2">
+      <li
+        class="io-relative io-flex io-items-center io-py-2 io-px-3 io-my-1 io-font-medium io-rounded-md io-cursor-pointer io-transition-colors io-group {% if current_url_name == 'home_view' %} io-bg-gradient-to-tr io-from-indigo-200 io-to-indigo-100 io-text-indigo-800{% else %} hover:io-bg-indigo-50 io-text-gray-600{% endif %}">
+        <svg class="io-w-6 io-h-6 io-text-indigo-800 dark:ds-text-white" aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
+        </svg>
+        <span class="io-overflow-hidden io-transition-all"
+          :class="{ 'io-w-30 io-ml-2': expanded, 'io-w-0': !expanded }">Home</span>
+        {% if alert %}
+        <i class="io-absolute io-right-6 io-w-2.5 io-h-2.5 io-rounded io-bg-indigo-400"
+          :class="{ expanded || 'io-top-2' }"></i>
+        {% endif %}
+        <template x-if="!expanded">
+          <div
+            class="io-absolute io-left-full io-rounded-md io-px-2 io-py-1 io-ml-6 io-bg-indigo-100 io-text-indigo-800 io-text-sm io-invisible io-opacity-20 -io-translate-x-3 io-transition-all group-hover:io-visible group-hover:io-opacity-100 group-hover:io-translate-x-0 io-whitespace-nowrap">
+            Home</div>
+        </template>
+      </li>
+      <li
+        class="io-relative io-flex io-items-center io-py-2 io-px-3 io-my-1 io-font-medium io-rounded-md io-cursor-pointer io-transition-colors io-group {% if current_url_name != 'home_view' %}io-bg-gradient-to-tr io-from-indigo-200 io-to-indigo-100 io-text-indigo-800{% else %} hover:io-bg-indigo-50 io-text-gray-600{% endif %}">
+        <svg class="io-w-6 io-h-6 io-text-gray-800 dark:ds-text-white" aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
+        </svg>
+        <template x-if="expanded">
+          <span class="io-overflow-hidden io-transition-all"
+            :class="{ 'io-w-30 io-ml-2': expanded, 'io-w-0': !expanded }">My Courses</span>
+        </template>
+        {% if alert is None %}
+        <template x-if="expanded">
+          <i class="io-absolute io-right-3 io-w-2 io-h-2 io-rounded io-bg-indigo-400"></i>
+        </template>
+        <template x-if="!expanded">
+          <i class="io-absolute io-right-3 io-top-1.5 io-w-2 io-h-2 io-rounded io-bg-indigo-400"></i>
+        </template>
+        {% endif %}
+        <template x-if="!expanded">
+          <div
+            class="io-absolute io-left-full io-rounded-md io-px-2 io-py-1 io-ml-6 io-bg-indigo-100 io-text-indigo-800 io-text-sm io-invisible io-opacity-20 -io-translate-x-3 io-transition-all group-hover:io-visible group-hover:io-opacity-100 group-hover:io-translate-x-0 io-whitespace-nowrap">
+            My Course</div>
+        </template>
+      </li>
+    </ul>
+
+    <div class="io-border-t io-flex io-p-3">
+      <div
+        class="io-w-10 io-h-10 io-bg-indigo-100 io-text-indigo-800 io-rounded-full io-font-medium io-flex io-justify-center io-items-center">
+        <span>CP</span>
+      </div>
+      <template x-if="expanded">
+        <div class="io-flex io-justify-between io-items-center io-overflow-hidden io-transition-all io-w-30 io-ml-3">
+          <div class="io-leading-4 io-w-28">
+            <h4 class="io-font-semibold io-truncate">Cmauricio</h4>
+            <p class="io-text-xs io-text-gray-600 io-truncate">cmauricio.parra.romero@ioflix.io</p>
+          </div>
+        </div>
+      </template>
+      <template x-if="expanded">
+        <div class="io-flex io-gap-2 io-ml-2">
+          <button
+            class="io-w-10 io-flex io-justify-center io-items-center io-rounded-lg io-bg-gray-50 hover:io-bg-gray-100">
+            <svg class="io-w-6 io-h-6 io-text-indigo-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 13v-2a1 1 0 0 0-1-1h-.757l-.707-1.707.535-.536a1 1 0 0 0 0-1.414l-1.414-1.414a1 1 0 0 0-1.414 0l-.536.535L14 4.757V4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v.757l-1.707.707-.536-.535a1 1 0 0 0-1.414 0L4.929 6.343a1 1 0 0 0 0 1.414l.536.536L4.757 10H4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h.757l.707 1.707-.535.536a1 1 0 0 0 0 1.414l1.414 1.414a1 1 0 0 0 1.414 0l.536-.535 1.707.707V20a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-.757l1.707-.708.536.536a1 1 0 0 0 1.414 0l1.414-1.414a1 1 0 0 0 0-1.414l-.535-.536.707-1.707H20a1 1 0 0 0 1-1Z" />
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+            </svg>
+          </button>
+        </div>
+      </template>
+    </div>
+  </nav>
+</aside>
