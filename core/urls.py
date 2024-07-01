@@ -5,10 +5,11 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', views.home, name='home_page'),
+    path('about/', views.about, name='about_page'),
+    path('landing/', views.landing, name='landing_page'),
 
-    path('', views.home, name='home_view'),
-    path('landing/', views.landing, name='landing_view'),
+    path('admin/', admin.site.urls),
 ]
 
 if settings.DEBUG:
